@@ -9,16 +9,11 @@ const totalPrices = document.getElementsByClassName("total-price");
 
 // Apply Promo Code
 function applyPromoCode() {
-    for (totalPrice of totalPrices) {
-        if (totalPrice.innerText < 0) {
-            totalPrice.innerText = 0;
-        };
-
-        const previousTotal = parseFloat(totalPrice.innerText);
-        const discount = (previousTotal * 20) / 100;
-        totalPrice.innerText = previousTotal - discount;
-        promoCode.value = "";
-    };
+    const totalPrice = totalPrices[1];
+    const previousTotal = parseFloat(totalPrice.innerText);
+    const discount = (previousTotal * 20) / 100;
+    totalPrice.innerText = previousTotal - discount;
+    promoCode.value = "";
 };
 
 // Calculate Total Price
@@ -77,6 +72,7 @@ for (button of buttons) {
         else {
             if (promoCode.value == "stevekaku") {
                 applyPromoCode();
+                event.target.disabled = true;
             };
         };
     });
